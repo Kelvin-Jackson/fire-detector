@@ -3,7 +3,7 @@
 
 This project is a machine learning-based fire detection system powered by Flask, PostgreSQL, Docker, and Mage AI. The backend supports model training, prediction APIs, and data processing.
 
----
+
 
 ##  Running the Application with Docker
 
@@ -12,21 +12,21 @@ This project is a machine learning-based fire detection system powered by Flask,
 docker compose up --build
 ```
 
----
+
 
 ###  Check Running Services
 ```bash
 docker ps
 ```
 
----
+
 
 ###  Stop All Containers
 ```bash
 docker compose down
 ```
 
----
+
 
 ###  Port Forwarding
 
@@ -37,9 +37,9 @@ After starting the application:
    - **Port `5000`** – for the Flask application.
    - **Port `6789`** – for Mage AI.
 
----
 
----
+
+
 
 ##  Environment Setup
 
@@ -54,7 +54,7 @@ POSTGRES_DB=your_db_name
 SECRET_KEY=your_secret_key
 ```
 
----
+
 
 ## 🧪 Testing the Prediction API
 
@@ -77,6 +77,6 @@ Example payload:
 }
 ```
 
----
+
 
 
