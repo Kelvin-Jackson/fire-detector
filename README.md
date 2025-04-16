@@ -39,28 +39,6 @@ After starting the application:
 
 ---
 
-##  Directory Structure (Optional Overview)
-
-```
-project-root/
-│
-├── model_training/
-│   ├── train_model.py
-│   └── encoders/
-│       ├── confidence_encoder.pkl
-│       └── daynight_encoder.pkl
-│
-├── app/
-│   ├── app.py
-│   └── templates/
-│       └── index.html
-│
-├── Dockerfile
-├── docker-compose.yml
-├── .env
-└── README.md
-```
-
 ---
 
 ##  Environment Setup
