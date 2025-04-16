@@ -9,7 +9,7 @@ This project is a machine learning-based fire detection system powered by Flask,
 
 ###  Build and Start the Application
 ```bash
-docker compose up --build
+docker compose up --build -d
 ```
 
 
