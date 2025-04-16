@@ -4,8 +4,8 @@ This project is a machine learning-based fire detection system powered by Flask,
 
 ---
 
-## 🚀 Running the Application with Docker
+## Running the Application with Docker
 
-### 🛠️ Build and Start the Application
+### Build and Start the Application
 ```bash
 docker compose up --build
