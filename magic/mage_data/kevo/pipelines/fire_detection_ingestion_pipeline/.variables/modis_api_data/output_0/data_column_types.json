@@ -1,0 +1,1 @@
+{"latitude": "float64", "longitude": "float64", "bright_ti4": "float64", "scan": "float64", "track": "float64", "acq_date": "str", "acq_time": "int64", "satellite": "str", "instrument": "str", "confidence": "str", "version": "str", "bright_ti5": "float64", "frp": "float64", "daynight": "str"}

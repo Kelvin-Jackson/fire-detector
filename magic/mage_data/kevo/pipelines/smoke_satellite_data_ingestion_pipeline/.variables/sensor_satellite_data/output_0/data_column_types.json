@@ -1,0 +1,1 @@
+{"sensor_timestamp": "datetime64[ns]", "modis_timestamp": "datetime64[ns]", "sensor_value": "int64", "fire_lat": "float64", "fire_long": "float64", "bright_ti4": "float64", "confidence": "str", "fire_radiative_power": "float64", "daynight": "str", "fire_detected": "int64"}

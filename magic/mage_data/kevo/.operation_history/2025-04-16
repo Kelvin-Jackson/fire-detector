@@ -1,1 +1,4 @@
 {"operation": "create", "resource": {"type": "pipeline", "uuid": "still_wizard"}, "timestamp": 1744790602, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "fire_detection_ingestion_pipeline"}, "timestamp": 1744793819, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "sensor_data_ingestion_pipeline"}, "timestamp": 1744794210, "user": null}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "smoke_satellite_data_ingestion_pipeline"}, "timestamp": 1744794360, "user": null}
