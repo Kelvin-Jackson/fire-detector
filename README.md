@@ -80,3 +80,4 @@ Example payload:
 
 
 
+pgcli -h 127.0.0.1 -d magic -u root -p 5432
