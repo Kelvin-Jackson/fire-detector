@@ -1,4 +1,123 @@
+# # services:
+# #   magic:
+# #     build:
+# #       context: ./magic
+# #       dockerfile: Dockerfile
+# #     image: mageai/mageai:latest
+# #     command: mage start ${PROJECT_NAME}
+# #     env_file:
+# #       - .env
+# #     environment:
+# #       USER_CODE_PATH: /home/src/${PROJECT_NAME}
+# #       ENV: ${ENV}
+# #     ports:
+# #       - "6789:6789"
+# #     volumes:
+# #       - ./magic:/home/src/
+# #     restart: on-failure:5
+# #     depends_on:
+# #       - postgres
+
+# #   postgres:
+# #     image: postgres:latest
+# #     environment:
+# #       POSTGRES_USER: ${POSTGRES_USER}
+# #       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+# #       POSTGRES_DB: ${POSTGRES_DB}
+# #     ports:
+# #       - "5432:5432"
+# #     volumes:
+# #       - pgdata:/var/lib/postgresql/data
+# #     restart: always
+
+# #   trainer_app:
+# #     build:
+# #       context: ./trainer_app
+# #     container_name: fire_trainer_app
+# #     command: sh -c "python model_training/main.py && python app/app.py"
+# #     volumes:
+# #       - ./trainer_app:/app
+# #     env_file:
+# #       - .env
+# #     ports:
+# #       - "5000:5000"
+
+# # volumes:
+# #   pgdata:
+# version: '3.8'
+
+# services:
+#   postgres:
+#     image: postgres:latest
+#     environment:
+#       POSTGRES_USER: ${POSTGRES_USER}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+#       POSTGRES_DB: ${POSTGRES_DB}
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - pgdata:/var/lib/postgresql/data
+#     restart: always
+
+#   magic:
+#     build:
+#       context: ./magic
+#       dockerfile: Dockerfile
+#     image: mageai/mageai:latest
+#     command: mage start ${PROJECT_NAME}
+#     env_file:
+#       - .env
+#     environment:
+#       USER_CODE_PATH: /home/src/${PROJECT_NAME}
+#       ENV: ${ENV}
+#     ports:
+#       - "6789:6789"
+#     volumes:
+#       - ./magic:/home/src/
+#     restart: on-failure:5
+#     depends_on:
+#       - postgres
+
+#   trainer_app:
+#     build:
+#       context: ./trainer_app
+#     container_name: fire_trainer_app
+#     command: >
+#       sh -c "
+#         echo 'Waiting for Postgres...' &&
+#         while ! nc -z ${POSTGRES_HOST} ${POSTGRES_PORT}; do
+#           sleep 1
+#         done &&
+#         echo 'Postgres is up!' &&
+#         python model_training/main.py &&
+#         python app/app.py
+#       "
+#     volumes:
+#       - ./trainer_app:/app
+#     env_file:
+#       - .env
+#     ports:
+#       - "5000:5000"
+#     depends_on:
+#       - postgres
+
+# volumes:
+#   pgdata:
+version: '3.8'
+
 services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
   magic:
     build:
       context: ./magic
@@ -18,18 +137,6 @@ services:
     depends_on:
       - postgres
 
-  postgres:
-    image: postgres:latest
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    ports:
-      - "5432:5432"
-    volumes:
-      - pgdata:/var/lib/postgresql/data
-    restart: always
-
   trainer_app:
     build:
       context: ./trainer_app
@@ -41,6 +148,8 @@ services:
       - .env
     ports:
       - "5000:5000"
+    depends_on:
+      - postgres
 
 volumes:
   pgdata:
