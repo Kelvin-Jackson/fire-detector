@@ -30,7 +30,7 @@
                 .then(response => response.json())
                 .then(data => {
                     const result = data.prediction;
-                    const resultText = result === 1 ? "🔥 Fire Detected!" : "✅ No Fire Detected.";
+                    const resultText = result === 1 ? "🔥 Fire Detected!" : "No Fire Detected.";
                     document.getElementById("prediction-result").innerText = resultText;
                 })
                 .catch(error => {
