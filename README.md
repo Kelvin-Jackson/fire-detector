@@ -1,7 +1,7 @@
 
-#  Fire Detection System – ML + Flask + PostgreSQL + Docker
+#  Forest Fire Detection System – ML + Flask + PostgreSQL + Docker
 
-This project is a machine learning-based fire detection system powered by Flask, PostgreSQL, Docker, and Mage AI. The backend supports model training, prediction APIs, and data processing.
+This project is a machine learning-based forest fire detection system powered by Flask, PostgreSQL, Docker, and Mage AI. The backend supports model training, prediction APIs, and data processing.
 
 
 
