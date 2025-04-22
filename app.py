@@ -7,7 +7,8 @@ import pytz
 app = Flask(__name__)
 
 # Define the local timezone
-local_tz = pytz.timezone('Africa/Nairobi')
+local_tz = pytz.timezone("Africa/Nairobi")
+
 
 # Function to connect to the database
 def get_db_connection():
@@ -16,7 +17,7 @@ def get_db_connection():
             host="172.18.0.2",  # Use your DB container's host/IP
             dbname="magic",
             user="root",
-            password="root"
+            password="root",
         )
         conn.autocommit = True
         return conn, conn.cursor()
@@ -24,22 +25,26 @@ def get_db_connection():
         print(f"Database connection failed: {e}")
         return None, None
 
+
 # Connect to DB
 conn, cur = get_db_connection()
 
 # Create the table if it doesn't exist
 if cur:
     try:
-        cur.execute("""
+        cur.execute(
+            """
             CREATE TABLE IF NOT EXISTS smoke_data_new (
                 id SERIAL PRIMARY KEY,
                 smoke_value INTEGER,
                 timestamp TIMESTAMP
             );
-        """)
+        """
+        )
         print("Table `smoke_data_new` is ready.")
     except Exception as e:
         print(f"Error creating table: {e}")
+
 
 # Route to receive POST requests
 @app.route("/log", methods=["POST"])
@@ -63,16 +68,14 @@ def log_data():
     try:
         cur.execute(
             "INSERT INTO smoke_data_new (smoke_value, timestamp) VALUES (%s, %s)",
-            (smoke, nairobi_time)
+            (smoke, nairobi_time),
         )
         conn.commit()
     except Exception as e:
         return jsonify({"status": "failure", "message": f"DB insert error: {e}"}), 500
 
-    return jsonify({
-        "status": "success",
-        "timestamp": nairobi_time.isoformat()
-    }), 200
+    return jsonify({"status": "success", "timestamp": nairobi_time.isoformat()}), 200
+
 
 # Run the app
 if __name__ == "__main__":
