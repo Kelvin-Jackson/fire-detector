@@ -12,7 +12,7 @@ def load_data_from_api(*args, **kwargs):
     """
     Template for loading data from API
     """
-    url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/3997c926c300d2de23e48faa0f5fc587/VIIRS_SNPP_NRT/world/1/2025-04-08"
+    url = "https://firms.modaps.eosdis.nasa.gov/api/area/csv/3997c926c300d2de23e48faa0f5fc587/VIIRS_SNPP_NRT/world/1/2025-04-22"
     response = requests.get(url)
 
     return pd.read_csv(io.StringIO(response.text), sep=',')

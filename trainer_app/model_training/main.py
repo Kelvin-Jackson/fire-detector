@@ -40,11 +40,11 @@ def preprocess_data(df):
     df["daynight"].fillna(df["daynight"].mode()[0], inplace=True)
 
     # Step 2: Feature Engineering
-    df["sensor_hour"] = df["sensor_timestamp"].dt.hour
-    df["sensor_dayofweek"] = df["sensor_timestamp"].dt.dayofweek
-    df["sensor_day"] = df["sensor_timestamp"].dt.day
+    df["sensor_hour"] = df["_timestamp"].dt.hour
+    df["sensor_dayofweek"] = df["_timestamp"].dt.dayofweek
+    df["sensor_day"] = df["_timestamp"].dt.day
     df["timestamp_diff"] = (
-        df["sensor_timestamp"] - df["modis_timestamp"]
+        df["_timestamp"] - df["modis_timestamp"]
     ).dt.total_seconds() / 60
     df["timestamp_diff"].fillna(0, inplace=True)
 
@@ -126,7 +126,7 @@ def main():
     host = os.getenv("POSTGRES_HOST")
     port = os.getenv("POSTGRES_PORT")
     database = os.getenv("POSTGRES_DB")
-    table_name = "prediction_data"
+    table_name = "pred_data"
 
     df = load_data_from_postgres(user, password, host, port, database, table_name)
 
@@ -136,7 +136,7 @@ def main():
 
     # Step 3: Prepare the final DataFrame
     final_df = df.drop(
-        columns=["sensor_timestamp", "modis_timestamp", "confidence", "daynight"]
+        columns=["_timestamp", "modis_timestamp", "confidence", "daynight"]
     )
 
     # Step 4: Split the data
